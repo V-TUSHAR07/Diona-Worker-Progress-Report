@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Worker Progress Report</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Times New Roman', serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #000;
+    }
+
+    header 
+      ,footer {
+      padding: 10px 20px;
+      border-top: 1px solid #ccc;
+    }
+
+    footer {
+      background-color: #f1f1f1;
+      text-align: center;
+      font-size: 13px;
+      border-bottom: 1px solid #ccc;
+    }
+
+     
+      
+      .header-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      /* Top row for logo and contact info */
+      .top-section {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 65px;
+      }
+      
+      /* Left side: logo + contact */
+      .logo-info {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 15px;
+        flex: 1 1 300px;
+      }
+      
+      .logo-info img {
+        width: 40%;
+        height: 120px;
+      }
+      
+      .contact-info {
+        font-size: 15px;
+        line-height: 1.5;
+        margin-left: 14px;
+      }
+      
+      .contact-info a {
+        color: #000;
+        text-decoration: underline;
+      }
+      
+      /* Claim Info block */
+      .claim-infoo {
+        font-size: 13px;
+        text-align: center;
+        max-width: 100%;
+        flex-wrap: wrap;padding: 15px;
+        ;
+        
+      }
+      
+      /* On larger screens, keep claim-info aligned to the right */
+      @media (min-width: 768px) {
+        .header-wrapper {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+      
+        .top-section {
+          flex: 1;
+        }
+      
+        .claim-info {
+          align-self: flex-start;
+          width: auto;
+        }
+      }
+      
+
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 20px;
+    }
+    .claim-info{
+
+      flex-wrap: wrap;
+      flex-direction: column;
+      padding: 15px;
+      margin: 0px 0;
+        background: #fafafa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center;
+        border: #6d6d6d 2px solid;
+    }
+    fieldset {
+      border: 1px solid #aaa;
+      padding: 15px;
+      margin: 20px 0;
+      background: #fafafa;
+    }
+
+    legend {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .flex-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .flex-row > label {
+      flex: 1 1 45%;
+    }
+
+    .static-text {
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .page-number {
+      font-size: 12px;
+      text-align: right;
+      color: #666;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    @media (max-width: 768px) {
+      .flex-row > label {
+        flex: 1 1 100%;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      textarea,
+      select {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+
+      fieldset {
+        padding: 12px;
+      }
+
+      legend {
+        font-size: 14px;
+      }
+
+      label {
+        font-size: 13px;
+      }
+    }
+    .claim-row {
+      display: flex;
+      gap: 10px; /* Space between the items */
+      justify-content: center; /* Center them horizontally */
+      flex-wrap: wrap; /* Wrap on small screens */
+    }
+    
+    .claim-infoo {
+      font-size: 14px;
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- Page 1 -->
+  <header class="container"> 
+    <div class="header-wrapper">
+      <!-- Top Row: Logo and Contact Info -->
+      <div class="top-section">
+        <div class="logo-info">
+          <img src="./int.png" alt="WCB Logo" />
+          <div class="contact-info">
+            <div>333 Broadway</div>
+            <div>Winnipeg, MB R3C 4W3</div>
+            <div>Phone: (204) 954-4321</div>
+            <div>Toll Free: 1-855-954-4321</div>
+            <a href="https://www.wcb.mb.ca">wcb.mb.ca</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Claim Info: Responsive position -->
+      <div class="claim-infoo">
+        <legend>Worker Progress Report</legend><br>
+        <div class="claim-row">
+
+          <div class="claim-info">Claim No. 20042047 </div> <div class="claim-info">WP</div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <label class="container"><span style="color: rgb(21, 77, 160);">Madeleine Willson</span> provided the following updates in relation to their claim:</label>
+
+   
+  <div class="container">
+   
+
+    <fieldset>
+      <legend>Return to Work</legend>
+      <div class="flex-row">
+        <label><input type="checkbox" /> I have not returned to work</label>
+        <label><input type="checkbox" /> I returned to work on: <input type="date" /></label>
+      </div>
+      <div class="flex-row">
+        <label><input type="radio" name="duties" /> Full duties, regular hours</label>
+        <label><input type="radio" name="duties" /> Full duties, reduced hours</label>
+        <label><input type="radio" name="duties" /> Modified duties, regular hours</label>
+        <label><input type="radio" name="duties" /> Modified duties, reduced hours</label>
+      </div>
+      <label>I expect to return to work on: <input type="date" /></label>
+      <label>I have the following concerns about returning to work:</label>
+      <textarea rows="3"></textarea>
+      <div class="flex-row">
+        <label>I was most recently in contact with: <input type="text" /></label>
+        <label>Date: <input type="date" /></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Recovery</legend>
+      <label><input type="radio" name="recovery" /> I have not fully recovered from my workplace injury.</label>
+      <label><input type="radio" name="recovery" /> I have fully recovered from my workplace injury.</label>
+      <label>I have provided the following comments about my recovery:</label>
+      <textarea rows="3"></textarea>
+    </fieldset>
+
+    <div class="static-text">Submitted: March 19, 2024 19:21 &nbsp;&nbsp; Worker App ID: 712041</div>
+    <div class="page-number">Page 1 of 3</div>
+  </div>
+
+  <footer></footer>
+
+  <!-- Page 2 -->
+  <div class="page-break"></div>
+  <!-- <div class="logo">
+    <img src="https://www.wcb.mb.ca/sites/default/files/wcb-logo.png" alt="WCB Logo" />
+  </div>
+  <header>
+    <strong>333 Broadway, Winnipeg, MB R3C 4W3</strong><br />
+    Phone: (204) 954-4321 | Toll Free: 1-855-954-4321 | <a href="https://www.wcb.mb.ca">wcb.mb.ca</a>
+  </header> -->
+  <div class="container">
+    <!-- <h2>Worker Progress Report</h2> -->
+    <div class="static-text">March 15, 2024</div>
+
+    <fieldset>
+      <legend>My return to work is going:</legend>
+      <input type="text" value="Terrible. Testing Testing" />
+    </fieldset>
+
+    <fieldset>
+      <legend>Recovery Updates</legend>
+      <div class="static-text">Madeleine Willson provided the following updates in relation to their claim:</div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Return to Work Details</legend>
+      <div class="static-text">
+        333 Broadway<br />
+        Winnipeg, MB R3C 4W3<br />
+        Phone: (204) 954-4321<br />
+        Toll Free: 1-855-954-4321<br />
+        wcb.mb.ca
+      </div>
+      <div class="static-text">Other: I was most recently in contact with:</div>
+      <div class="flex-row">
+        <label><input type="checkbox" /> I have not missed time from work</label>
+        <label><input type="checkbox" /> I am working</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Pain Scale</legend>
+      <label>I rate my current pain/discomfort on a scale of 1-10, where 1 is no pain and 10 is severe pain out of 10.</label>
+      <div class="flex-row">
+        <label><input type="radio" name="pain2" /> 1</label>
+        <label><input type="radio" name="pain2" /> 2</label>
+        <label><input type="radio" name="pain2" /> 3</label>
+        <label><input type="radio" name="pain2" /> 4</label>
+        <label><input type="radio" name="pain2" /> 5</label>
+        <label><input type="radio" name="pain2" /> 6</label>
+        <label><input type="radio" name="pain2" /> 7</label>
+        <label><input type="radio" name="pain2" /> 8</label>
+        <label><input type="radio" name="pain2" /> 9</label>
+        <label><input type="radio" name="pain2" /> 10</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Medical Treatment</legend>
+      <label><input type="radio" name="treatment2" /> I am not continuing to receive medical treatment for my workplace injury.</label>
+      <label><input type="radio" name="treatment2" /> I am continuing to receive medical treatment for my workplace injury from:</label>
+      <label>Medical Provider Type: <input type="text" /></label>
+      <div class="flex-row">
+        <label>My last medical treatment was <input type="text" /> on <input type="date" /></label>
+        <label>Another medical provider <input type="text" /> on <input type="date" /></label>
+      </div>
+      <label>I am attending a Chiropractor or Physiotherapist:</label>
+      <select>
+        <option>Frequency</option>
+        <option>Once</option>
+        <option>Weekly</option>
+        <option>Biweekly</option>
+        <option>Monthly</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <legend>Home Exercises</legend>
+      <label><input type="radio" name="exercise2" /> I am not doing home exercises for my workplace injury.</label>
+      <label><input type="radio" name="exercise2" /> I am doing home exercises for my workplace injury.</label>
+      <label>List the exercises you are doing:</label>
+      <textarea rows="3"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Other Information</legend>
+      <label>I would like to provide the following additional information about my claim/injury:</label>
+      <textarea rows="3">No info Testing Testing</textarea>
+    </fieldset>
+
+    <div class="static-text">Worker App ID: 712041 &nbsp;&nbsp; Submitted: March 19, 2024 19:21</div>
+    <div class="page-number">Page 2 of 3</div>
+  </div>
+
+  <footer></footer>
+
+  <!-- Page 3 -->
+  <div class="page-break"></div>
+
+  <div class="container">
+    <fieldset>
+      <legend>Medication</legend>
+      <label><input type="radio" name="medication2" /> I am not taking medication for my workplace injury.</label>
+      <label><input type="radio" name="medication2" /> I am taking medication for my workplace injury:</label>
+      <label>Name of prescribed medication: <input type="text" /></label>
+      <label>My next medical treatment is on: <input type="date" /></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Certification</legend>
+      <p>
+        I certify that the information given on this form is true, correct and complete to the best of my
+        knowledge. I agree to notify the Workers Compensation Board of Manitoba (WCB) immediately once I
+        return to any form of work and/or employment. I understand that it is an offence to knowingly make
+        a false statement to the WCB. I also understand that it is an offence to withhold information from
+        WCB which affects my entitlement to compensation (e.g., full or partial recovery from injury, ability to
+        return to work, sources of additional income, etc.). I understand that refusing to co-operate with, or
+        follow my treatment, may result in the WCB reducing or suspending my benefits.
+      </p>
+      <p>
+        I understand that the <strong>Privacy Notice</strong> applies to the personal information collected in this document.
+      </p>
+    </fieldset>
+
+    <div class="static-text">Worker App ID: 712041 &nbsp;&nbsp; Submitted: March 19, 2024 19:21</div>
+    <div class="page-number">Page 3 of 3</div>
+  </div>
+
+  <footer></footer>
+</body>
+</html>
